@@ -1,0 +1,289 @@
+timestamp: 2022-11-11T13:46:20.951863
+CREATE TABLE "auth_user"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "first_name" CHAR(128),
+    "last_name" CHAR(128),
+    "email" CHAR(512),
+    "password" CHAR(512),
+    "registration_key" CHAR(512),
+    "reset_password_key" CHAR(512),
+    "registration_id" CHAR(512)
+);
+success!
+timestamp: 2022-11-11T13:46:21.016793
+CREATE TABLE "auth_group"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "role" CHAR(512),
+    "description" TEXT
+);
+success!
+timestamp: 2022-11-11T13:46:21.076395
+CREATE TABLE "auth_membership"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "group_id" INTEGER REFERENCES "auth_group" ("id") ON DELETE CASCADE  
+);
+success!
+timestamp: 2022-11-11T13:46:21.124503
+CREATE TABLE "auth_permission"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "group_id" INTEGER REFERENCES "auth_group" ("id") ON DELETE CASCADE  ,
+    "name" CHAR(512),
+    "table_name" CHAR(512),
+    "record_id" INTEGER
+);
+success!
+timestamp: 2022-11-11T13:46:21.167794
+CREATE TABLE "auth_event"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "time_stamp" TIMESTAMP,
+    "client_ip" CHAR(512),
+    "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "origin" CHAR(512),
+    "description" TEXT
+);
+success!
+timestamp: 2022-11-11T13:46:21.219262
+CREATE TABLE "auth_cas"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE  ,
+    "created_on" TIMESTAMP,
+    "service" CHAR(512),
+    "ticket" CHAR(512),
+    "renew" CHAR(1)
+);
+success!
+timestamp: 2022-11-11T14:27:32.270558
+CREATE TABLE "test"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "texto" CHAR(512)
+);
+success!
+timestamp: 2022-11-11T15:37:51.754176
+CREATE TABLE "trasmision"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "codigo" CHAR(512),
+    "descripcion" CHAR(512)
+);
+success!
+timestamp: 2022-11-11T15:40:01.654099
+CREATE TABLE "Transmision"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "codigo" CHAR(512),
+    "descripcion" CHAR(512)
+);
+success!
+success!
+timestamp: 2022-11-11T15:41:16.847621
+CREATE TABLE "Autos"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "codigo" CHAR(512),
+    "placas" CHAR(512),
+    "trans" CHAR(512), CONSTRAINT  "FK_Autos_trans__constraint" FOREIGN KEY ("trans") REFERENCES "Transmision" ("codigo") ON DELETE CASCADE
+);
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+timestamp: 2022-11-11T15:59:51.684409
+ALTER TABLE "Autos" ADD "transmision" INTEGER REFERENCES "Transmision" ("id") ON DELETE CASCADE  ;
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+timestamp: 2022-11-11T16:01:32.571781
+CREATE TABLE "Transmisiones"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "codigo" CHAR(512),
+    "descripcion" CHAR(512)
+);
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+DROP TABLE "Transmisiones";
+success!
+DROP TABLE "Autos";
+success!
+timestamp: 2022-11-11T16:12:28.512641
+CREATE TABLE "Transmisiones"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "codigo" CHAR(512),
+    "descripcion" CHAR(512)
+);
+success!
+timestamp: 2022-11-11T16:12:28.624974
+CREATE TABLE "Autos"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "codigo" CHAR(512),
+    "placas" CHAR(512),
+    "transmision" INTEGER REFERENCES "Transmisiones" ("id") ON DELETE CASCADE  
+);
+success!
+timestamp: 2022-11-11T17:21:03.788563
+CREATE TABLE "Colores"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "color" CHAR(512)
+);
+success!
+timestamp: 2022-11-11T17:22:08.367428
+ALTER TABLE "Autos" ADD "color" INTEGER REFERENCES "Colores" ("id") ON DELETE CASCADE  ;
+success!
+timestamp: 2022-11-11T17:26:51.020303
+CREATE TABLE "Tipos"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "tipo" CHAR(512)
+);
+success!
+timestamp: 2022-11-11T17:26:51.076330
+CREATE TABLE "Contactos"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "nombre" CHAR(512),
+    "apellido" CHAR(512),
+    "tipo" TEXT
+);
+success!
+timestamp: 2022-11-12T17:15:15.170588
+CREATE TABLE "Contactos_tipos"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "tipo" CHAR(512)
+);
+success!
+success!
+timestamp: 2022-11-12T17:18:15.157367
+CREATE TABLE "Contactos_tipo"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "tipo" CHAR(512)
+);
+success!
+success!
+timestamp: 2022-11-12T17:18:15.355379
+CREATE TABLE "Transacciones_tipo"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "tipo" CHAR(512)
+);
+success!
+timestamp: 2022-11-12T17:25:11.654383
+ALTER TABLE "Contactos" ADD "nombre_completo" CHAR(512);
+success!
+timestamp: 2022-11-12T17:30:51.143711
+CREATE TABLE "Automoviles"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "codigo" CHAR(512),
+    "placas" CHAR(512),
+    "transmision" INTEGER REFERENCES "Transmisiones" ("id") ON DELETE CASCADE  ,
+    "color" INTEGER REFERENCES "Colores" ("id") ON DELETE CASCADE  
+);
+success!
+timestamp: 2022-11-12T17:30:51.210633
+CREATE TABLE "Rentas"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "inicio" TIMESTAMP,
+    "fin" TIMESTAMP,
+    "automovil" INTEGER REFERENCES "Automoviles" ("id") ON DELETE CASCADE  ,
+    "cliente" INTEGER REFERENCES "Contactos" ("id") ON DELETE CASCADE  ,
+    "vendedor" INTEGER REFERENCES "Contactos" ("id") ON DELETE CASCADE  ,
+    "operador" INTEGER REFERENCES "Contactos" ("id") ON DELETE CASCADE  ,
+    "tarifa" DOUBLE
+);
+success!
+timestamp: 2022-11-12T17:30:51.270622
+CREATE TABLE "Transacciones"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "tipo" INTEGER REFERENCES "Transacciones_tipo" ("id") ON DELETE CASCADE  ,
+    "renta" INTEGER REFERENCES "Rentas" ("id") ON DELETE CASCADE  
+);
+success!
+timestamp: 2022-11-12T17:34:56.165293
+ALTER TABLE "Transacciones_tipo" ADD "codigo" CHAR(512);
+success!
+timestamp: 2022-11-12T17:46:33.896182
+ALTER TABLE "Transacciones" ADD "monto" DOUBLE;
+success!

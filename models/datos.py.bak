@@ -1,0 +1,4 @@
+# -*- coding: utf-8 -*-
+db.define_table('prueba', 
+               Field('texto', 'string'),
+               Field('numero', 'string')

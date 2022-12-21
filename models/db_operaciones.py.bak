@@ -1,0 +1,18 @@
+# -*- coding: utf-8 -*-
+
+db.define_table('Transmisiones',
+                Field('codigo','string'),
+                Field('descripcion','string'),
+                format='%(codigo)s %(descripcion)s',
+                singular='Trasmisión',plural='Trasmisiones',
+
+               )
+db.define_table('Autos',
+                Field('codigo','string'),
+                Field('placas', 'string'),
+                Field('transmision', db.Transmisiones),
+                format='%(codigo)s',
+                singular='Auto',plural='Autos',
+               )
+#db.Transmisiones.drop()
+#db.Autos.drop()
